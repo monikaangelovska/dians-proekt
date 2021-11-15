@@ -1,0 +1,19 @@
+Во овој фолдер се наоѓаат 4 фајлови со детални податоци за сите аптеки, болници, клиники и ветеринари
+на територијата на РМ кои се достапни на OpenStreetMap.
+Истите ги добивме користејќи ги следниве коменди.
+
+-За подетални податоци:
+osmfilter map.osm --keep="amenity=veterinary" | osmconvert64-0.8.8p - --all-to-nodes --csv="@id @lon @lat name name:mk opening_hours drive_through building email phone website wheelchair" --csv-headline --csv-separator="," -o="veterinaries_full_details.csv"
+
+-За основни податоци:
+osmfilter map.osm --keep="amenity=veterinary" | osmconvert64-0.8.8p - --all-to-nodes --csv="@id @lon @lat name name:mk" --csv-headline --csv-separator="," -o="veterinaries.csv"
+
+Во фолдерот "full_details" се поставени фајловите со подетални податоци.
+Овде како пример е дадена командата само за креиранје на фајлот veterinarier_full_details.csv, 
+но истата се користи и за другите 3, со единствена разлика каде наместо "amenity=veterinary" се
+заменува со "amenity=clinic", "amenity=pharmacy" и "amenity=hospital".
+За да ја користиме командата претходно требаше да спуштиме osmfilter од
+https://wiki.openstreetmap.org/wiki/Osmfilter#Download, како и osmconvert од
+https://wiki.openstreetmap.org/wiki/Osmconvert#Download и притоа ги ставивме во
+ист директориум заедно со мапатa која опфаќа дел од општините Центар, Карпош и Аеродром
+во градот Скопје.
