@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Main</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+</head>
+<body>
+    <nav class="clearfix">
+
+        <div class="clearfix">
+            <div class="dropdown">
+                <a href="main.html"><img id="logo" src="pics/logo.png"></a>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Categories
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Pharmacies</a>
+                    <a href="#">Hospitals</a>
+                    <a href="#">Clinics</a>
+                    <a href="#">Veterinarians</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Pharmacies
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="zegin.html">Zegin</a>
+                    <a href="#">EuroFarm</a>
+                    <a href="#">Betty</a>
+                    <a href="#">Herbal pharmacy</a>
+                    <a href="#">Viola</a>
+                    <a href="#">Pharmacy Remedium Lek</a>
+                    <a href="#">Opium</a>
+                    <a href="#">Uni Medikal</a>
+                    <a href="#">Biofit</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Hospitals
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Адриалаб</a>
+                    <a href="#">Центар за ментално здравје</a>
+                    <a href="#">ПЗУ „Д-р Горица“</a>
+                    <a href="#">Неуромедика</a>
+                    <a href="#">ЈЗУ ЗДРАВСТВЕН ДОМ</a>
+                    <a href="#">Здравствен дом „Железничар“</a>
+                    <a href="#">Стоматолошка Ординација</a>
+                    
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Clinics
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Авицена Лабораторија</a>
+                    <a href="#">Офтамолошки ласерски центар Др. Ристовски</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Veterinarians
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Ветеринарна болница</a>
+                    <a href="#">Универзитетска Ветеринарна болница</a>
+                    <a href="#">Пет Вет</a>
+                </div>
+            </div>
+        </div>
+
+        <div class ="dropdown" id="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <a href="javascript:void(0)" id="pull">Menu</a>
+
+    </nav>
+
+    <br>
+    <br>
+
+    <div id="doktor">
+        <p id="tekst">
+            Highest <br>quality health<br> care for all
+            <br><span id="sin_tekst">Everything we need on one map</span>
+        </p>
+        <img id="doktorche" src="pics/slika1.png">
+    </div>
+    <div id="plava">
+        <div>
+            <img src="pics/slika2.jpg">
+        </div>
+        <div id="health">
+            <p>Health<br> Comes<br> First <hr></p>
+        </div>
+    </div>
+    <div id="mapa">
+        <div id="div_so_opis">
+            <!--Ovde se naogja opisot sho e dole levo na stranata-->
+            <p id="opis_dole_na_strana"><b>You are in the Right Place at the Right Time</b><br></p>
+            <span>
+                With our application you can find all the necessary locations near you.<br>
+                Select a category or the type in the search box, we will find all hospitals, pharmacies,<br>
+                clinics or veterinarians that you can find along with some additional information about them.
+            </span>
+        </div>
+        <div>
+            <div class="mapouter1">
+                <div class="gmap_canvas1">
+                    <iframe width="500" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=Skopje&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
