@@ -1,0 +1,108 @@
+pravenje baza
+
+--da se naprai postgres baza so koi i da vi se lokalnite username i password i posle da se napravi schema dizajn_proekt
+
+create schema dizajn_proekt;
+
+--sledno da se smeni search path na dizajn_proekt
+
+--posle se pravat tabeli
+--HOSPITALS
+create table hospitals(
+    id_hospital BIGINT,
+    lon DOUBLE PRECISION,
+    lat DOUBLE PRECISION,
+    name varchar(150),
+    namemk varchar(150),
+    opening_hours varchar(15),
+    drive_through varchar(30) , -- mozebi da se stavi default na nula
+    building varchar(30), -- string za vo koja zgrada se naogja - ne saka bool radi toa
+    email varchar(50),
+    phone varchar(15),
+    website varchar(50),
+    wheelchair varchar(15) , --treba bool ama ima podatoci koi ne se yes or no, tuku drugi stringovi
+    constraint pk_bolnici primary key (id_hospital)
+);
+
+
+--posle ova se popolnuva tabelata so podatoci so slednava komanda
+copy hospitals from 'C:\Users\Nikola\Desktop\nikola finki\5 semestar\Dians\Dians_proekt\domasna1\amenities\filtered_data\hospitals_full_details.txt' delimiter ',' csv header;
+
+--na mestoto na patekata ke ja stavite patekata kade shto e fajlost soodveten.
+
+--posle toa se pravi slednava komanda za da se izbrisat site so nulls shto se
+delete from hospitals
+where name is null;
+
+--so komandata dole proverete dali izgleda kako shto treba tabelata
+select * from hospitals;
+
+
+--istive steps se za site drugi tabeli
+
+--CLINICS
+create table clinics(
+    id_clinic BIGINT,
+    lon DOUBLE PRECISION,
+    lat DOUBLE PRECISION,
+    name varchar(150),
+    namemk varchar(150),
+    opening_hours varchar(40),
+    drive_through varchar(30) , -- mozebi da se stavi default na nula
+    building varchar(30), -- string za vo koja zgrada se naogja - ne saka bool radi toa
+    email varchar(50),
+    phone varchar(15),
+    website varchar(50),
+    wheelchair varchar(15) , --treba bool ama ima podatoci koi ne se yes or no, tuku drugi stringovi
+    constraint pk_clinics primary key (id_clinic)
+);
+copy clinics from 'C:\Users\Nikola\Desktop\nikola finki\5 semestar\Dians\Dians_proekt\domasna1\amenities\filtered_data\clinics_full_details.txt' delimiter ',' csv header;
+
+delete from clinics
+where name is null;
+
+
+
+--PHARMACIES
+create table pharmacies(
+    id_pharmacy BIGINT,
+    lon DOUBLE PRECISION,
+    lat DOUBLE PRECISION,
+    name varchar(150),
+    namemk varchar(150),
+    opening_hours varchar(50),
+    drive_through varchar(30) , -- mozebi da se stavi default na nula
+    building varchar(30), -- string za vo koja zgrada se naogja - ne saka bool radi toa
+    email varchar(50),
+    phone varchar(15),
+    website varchar(50),
+    wheelchair varchar(15) , --treba bool ama ima podatoci koi ne se yes or no, tuku drugi stringovi
+    constraint pk_pharmacy primary key (id_pharmacy)
+);
+copy pharmacies from 'C:\Users\Nikola\Desktop\nikola finki\5 semestar\Dians\Dians_proekt\domasna1\amenities\filtered_data\Pharmacies_full_details.txt' delimiter ',' csv header;
+
+
+delete from pharmacies
+where name is null;
+
+
+--VETERINARIES
+create table veterinaries(
+    id_veterinary BIGINT,
+    lon DOUBLE PRECISION,
+    lat DOUBLE PRECISION,
+    name varchar(150),
+    namemk varchar(150),
+    opening_hours varchar(50),
+    drive_through varchar(30) , -- mozebi da se stavi default na nula
+    building varchar(30), -- string za vo koja zgrada se naogja - ne saka bool radi toa
+    email varchar(50),
+    phone varchar(15),
+    website varchar(50),
+    wheelchair varchar(15) , --treba bool ama ima podatoci koi ne se yes or no, tuku drugi stringovi
+    constraint pk_veterinary primary key (id_veterinary)
+);
+copy veterinaries from 'C:\Users\Nikola\Desktop\nikola finki\5 semestar\Dians\Dians_proekt\domasna1\amenities\filtered_data\veterinaries_full_details.txt' delimiter ',' csv header;
+
+delete from veterinaries
+where name is null;
