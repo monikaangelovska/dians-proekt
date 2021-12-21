@@ -146,11 +146,32 @@ nav a#pull {
 	border: solid;
 	border-color: lightskyblue;
 	position: relative;
-	margin: 15px;
-	height: 320px;
+	margin: 9px;
+
 	width: 360px;
-	margin-top: 70px;
-	background-color: white;
+	margin-top: 18px;
+	background-color: #f7f8fb;
+	display: flex;
+	flex-direction: column;
+
+}
+a{
+	text-decoration: none;
+	text-align: left;
+	color: black;
+	margin-bottom: 24px;
+	line-height: 1.2em;
+}
+.tabela a:hover{
+	color: #68ace1;
+	text-decoration: underline;
+}
+
+h1{
+	text-align: left;
+	margin: 12px;
+	margin-left: 22px;
+
 }
 
 .tabelaheader {
