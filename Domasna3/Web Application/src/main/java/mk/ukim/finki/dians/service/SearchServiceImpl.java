@@ -4,6 +4,7 @@ import mk.ukim.finki.dians.model.*;
 import mk.ukim.finki.dians.repository.*;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,16 +26,24 @@ public class SearchServiceImpl implements SearchService{
     }
 
     public List<Clinic> findAllClinics(){
-        return clinic_repository.findAll();
+        List<Clinic> clinics=clinic_repository.findAll();
+        clinics.sort(Clinic.compareByName);
+        return clinics;
     }
     public List<Hospital> findAllHospitals(){
-        return hospital_repository.findAll();
+        List<Hospital> hospitals=hospital_repository.findAll();
+        hospitals.sort(Hospital.compareByName);
+        return hospitals;
     }
     public List<Veterinary> findAllVeterinaries(){
-        return veterinary_repository.findAll();
+        List<Veterinary> veterinaries=veterinary_repository.findAll();
+        veterinaries.sort(Veterinary.compareByName);
+        return veterinaries;
     }
     public List<Pharmacy> findAllPharmacies(){
-        return pharmacy_repository.findAll();
+        List<Pharmacy> pharmacies=pharmacy_repository.findAll();
+        pharmacies.sort(Pharmacy.compareByName);
+        return pharmacies;
     }
 
     @Override
@@ -58,22 +67,46 @@ public class SearchServiceImpl implements SearchService{
     }
 
     @Override
-    public Optional<Hospital> findByNameHospital(String text) {
-        return hospital_repository.findByName(text);
+    public List<Hospital> findByNameHospital(String text) {
+        if (hospital_repository.findByNameIgnoreCaseContains(text).size()>1)
+        {
+            List<Hospital> hospitals=hospital_repository.findByNameIgnoreCaseContains(text);
+            hospitals.sort(Hospital.compareByName);
+            return hospitals;
+        }
+        return hospital_repository.findByNameIgnoreCaseContains(text);
     }
 
     @Override
-    public Optional<Pharmacy> findByNamePharmacy(String text) {
-        return pharmacy_repository.findByName(text);
+    public List<Pharmacy> findByNamePharmacy(String text) {
+        if(pharmacy_repository.findByNameIgnoreCaseContains(text).size()>1)
+        {
+            List<Pharmacy> pharmacies=pharmacy_repository.findByNameIgnoreCaseContains(text);
+            pharmacies.sort(Pharmacy.compareByName);
+            return pharmacies;
+        }
+        return pharmacy_repository.findByNameIgnoreCaseContains(text);
     }
 
     @Override
-    public Optional<Veterinary> findByNameVeterinary(String text) {
-        return veterinary_repository.findByName(text);
+    public List<Veterinary> findByNameVeterinary(String text) {
+        if(veterinary_repository.findByNameIgnoreCaseContains(text).size()>1)
+        {
+            List<Veterinary> veterinaries=veterinary_repository.findByNameIgnoreCaseContains(text);
+            veterinaries.sort(Veterinary.compareByName);
+            return veterinaries;
+        }
+        return veterinary_repository.findByNameIgnoreCaseContains(text);
     }
 
     @Override
-    public Optional<Clinic> findByNameClinic(String text) {
-        return clinic_repository.findByName(text);
+    public List<Clinic> findByNameClinic(String text) {
+        if(clinic_repository.findByNameIgnoreCaseContains(text).size()>0)
+        {
+            List<Clinic> clinics=clinic_repository.findByNameIgnoreCaseContains(text);
+            clinics.sort(Clinic.compareByName);
+            return clinics;
+        }
+        return clinic_repository.findByNameIgnoreCaseContains(text);
     }
 }

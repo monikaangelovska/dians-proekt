@@ -2,6 +2,7 @@ package mk.ukim.finki.dians.repository;
 
 
 
+import mk.ukim.finki.dians.model.Pharmacy;
 import mk.ukim.finki.dians.model.Veterinary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,8 @@ public interface Veterinary_repository extends JpaRepository<Veterinary, Long> {
     Optional<Veterinary> findByName(String name);
 
     Optional<Veterinary> findById(long id);
+
+    List<Veterinary> findByNameIgnoreCaseContains(String text);
 
     //List<Veterinary> findAll();
 
