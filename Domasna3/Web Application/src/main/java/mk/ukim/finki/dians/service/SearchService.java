@@ -14,8 +14,8 @@ public interface SearchService {
     public Optional<Pharmacy> findByIdPharmacy(Long Id);
     public Optional<Veterinary> findByIdVeterinary(Long Id);
     public Optional<Clinic> findByIdClinic(Long Id);
-    public Optional<Hospital> findByNameHospital(String text);
-    public Optional<Pharmacy> findByNamePharmacy(String text);
-    public Optional<Veterinary> findByNameVeterinary(String text);
-    public Optional<Clinic> findByNameClinic(String text);
+    public List<Hospital> findByNameHospital(String text);
+    public List<Pharmacy> findByNamePharmacy(String text);
+    public List<Veterinary> findByNameVeterinary(String text);
+    public List<Clinic> findByNameClinic(String text);
 }

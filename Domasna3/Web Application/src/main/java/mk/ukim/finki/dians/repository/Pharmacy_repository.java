@@ -16,6 +16,8 @@ public interface Pharmacy_repository extends JpaRepository<Pharmacy, Long> {
 
     Optional<Pharmacy> findById(long id);
 
+    List<Pharmacy> findByNameIgnoreCaseContains(String text);
+
     //List<Clinic> findAll();
 
 }

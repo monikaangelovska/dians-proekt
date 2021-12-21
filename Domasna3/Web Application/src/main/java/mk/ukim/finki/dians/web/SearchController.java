@@ -1,9 +1,12 @@
 package mk.ukim.finki.dians.web;
 
+import mk.ukim.finki.dians.model.Pharmacy;
 import mk.ukim.finki.dians.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -80,36 +83,108 @@ public class SearchController {
         model.addAttribute("veterinaries", searchService.findAllVeterinaries());
         model.addAttribute("hospitals", searchService.findAllHospitals());
         model.addAttribute("clinics", searchService.findAllClinics());
-        if("hospitals".contains(text.toLowerCase())) {
+        if("hospitals".contains(text.toLowerCase()) || "болница".contains(text.toLowerCase()) ||
+                "болници".contains(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllHospitals());
+            model.addAttribute("categoryName", "Hospitals");
             return "category";
         }
         else if("veterinary".contains(text.toLowerCase()) || "veterinaries".contains(text.toLowerCase())
-        || "veterinarians".contains(text.toLowerCase())) {
+        || "veterinarians".contains(text.toLowerCase()) || "ветеринари".contains(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllVeterinaries());
+            model.addAttribute("categoryName", "Veterinaries");
             return "category";
         }
-        else if("clinics".contains(text.toLowerCase())) {
+        else if("clinics".contains(text.toLowerCase()) ||"клиники".contains(text.toLowerCase())
+        || "клиника".contains(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllClinics());
+            model.addAttribute("categoryName", "Clinics");
             return "category";
         }
-        else if("pharmacy".contains(text.toLowerCase())||"pharmacies".contains(text.toLowerCase())) {
+        else if("pharmacy".contains(text.toLowerCase())||"pharmacies".contains(text.toLowerCase())
+        || "аптека".contains(text.toLowerCase())||"аптеки".contains(text.toLowerCase())) {
             model.addAttribute("category", searchService.findAllPharmacies());
+            model.addAttribute("categoryName", "Pharmacies");
             return "category";
         }
         if(text!="") {
-            if (searchService.findByNameHospital(text).isPresent())
-                model.addAttribute("item", searchService.findByNameHospital(text).get());
-            else if (searchService.findByNameVeterinary(text).isPresent())
-                model.addAttribute("item", searchService.findByNameVeterinary(text).get());
-            else if (searchService.findByNameClinic(text).isPresent())
-                model.addAttribute("item", searchService.findByNameClinic(text).get());
-            else if (searchService.findByNamePharmacy(text).isPresent())
-                model.addAttribute("item", searchService.findByNamePharmacy(text).get());
+            if("zegin".contains(text.toLowerCase()) || "зегин".contains(text.toLowerCase()))
+            {
+                List<Pharmacy> list1=searchService.findByNamePharmacy("zegin");
+                List<Pharmacy> list2=searchService.findByNamePharmacy("зегин");
+                list1.addAll(list2);
+                list1.sort(Pharmacy.compareByName);
+                model.addAttribute("category", list1);
+                return "category";
+            }
+            else if("eurofarm".contains(text.toLowerCase()) || "еурофарм".contains(text.toLowerCase()))
+            {
+                List<Pharmacy> list1=searchService.findByNamePharmacy("eurofarm");
+                List<Pharmacy> list2=searchService.findByNamePharmacy("еурофарм");
+                list1.addAll(list2);
+                list1.sort(Pharmacy.compareByName);
+                model.addAttribute("category", list1);
+                return "category";
+            }
+            else if (searchService.findByNameHospital(text).size()>0)
+            {
+                if(searchService.findByNameHospital(text).size()==1)
+                {
+                    model.addAttribute("item", searchService.findByNameHospital(text).get(0));
+                    return "item";
+                }
+                else
+                {
+                    model.addAttribute("category", searchService.findByNameHospital(text));
+                    return "category";
+                }
+            }
+
+            else if (searchService.findByNameVeterinary(text).size()>0)
+            {
+                if (searchService.findByNameVeterinary(text).size()==1)
+                {
+                    model.addAttribute("item", searchService.findByNameVeterinary(text).get(0));
+                    return "item";
+                }
+                else
+                {
+                    model.addAttribute("category", searchService.findByNameVeterinary(text));
+                    return "category";
+                }
+            }
+
+            else if (searchService.findByNameClinic(text).size()>0)
+            {
+                if (searchService.findByNameClinic(text).size()==1)
+                {
+                    model.addAttribute("item", searchService.findByNameClinic(text).get(0));
+                    return "item";
+                }
+                else
+                {
+                    model.addAttribute("category", searchService.findByNameClinic(text));
+                    return "category";
+                }
+            }
+
+            else if (searchService.findByNamePharmacy(text).size()>0)
+            {
+                if (searchService.findByNamePharmacy(text).size()==1)
+                {
+                    model.addAttribute("item", searchService.findByNamePharmacy(text).get(0));
+                    return "item";
+                }
+                else
+                {
+                    model.addAttribute("category", searchService.findByNamePharmacy(text));
+                    return "category";
+                }
+            }
+
         }
-        if(model.getAttribute("item")==null)
-            return "redirect:/";
-        return "item";
+        return "redirect:/";
+
     }
 
 }

@@ -3,6 +3,7 @@ package mk.ukim.finki.dians.repository;
 
 
 import mk.ukim.finki.dians.model.Clinic;
+import mk.ukim.finki.dians.model.Pharmacy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,8 @@ public interface Clinic_repository extends JpaRepository<Clinic, Long> {
     Optional<Clinic> findByName(String name);
 
     Optional<Clinic> findById(long id);
+
+    List<Clinic> findByNameIgnoreCaseContains(String text);
 
     //List<Clinic> findAll();
 
