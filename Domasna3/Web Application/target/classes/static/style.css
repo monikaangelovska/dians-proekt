@@ -146,12 +146,14 @@ nav a#pull {
 	border: solid;
 	border-color: lightskyblue;
 	position: relative;
-	margin: 15px;
-	height: 320px;
+	margin: 9px;
+
 	width: 360px;
-	margin-top: 70px;
-	background-color: white;
+	margin-top: 18px;
+	background-color: #f7f8fb;
+
 }
+
 
 .tabelaheader {
 	font-size: larger;

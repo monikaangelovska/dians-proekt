@@ -153,7 +153,6 @@
 <!--    lista    -->
         <h3 th:text="${categoryName}"></h3>
         <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
-
     </div>
     <div class="mapouter"  >
         <div class="gmap_canvas">
