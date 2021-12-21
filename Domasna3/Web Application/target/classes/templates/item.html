@@ -7,11 +7,57 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
-    <script>
+    <script th:inline="javascript">
+        function website() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getWebSite()}]];
+            console.log(element);
+            spoeno.innerHTML=`<a href="${element}" target="_blank"> ${element} </a>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
+        function phone() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getPhone()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
+        function drive() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getDriveThrough()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
         function openhours() {
             var spoeno = document.getElementById('spoeni');
-            spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+            element=[[${item.getOpenHours()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
+        function email() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getEmail()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
+        function building() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getBuilding()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
+        function wheelchair() {
+            var spoeno = document.getElementById('spoeni');
+            element=[[${item.getWheelchair()}]];
+            console.log(element);
+            spoeno.innerHTML=`<p> ${element} </p>` ;
+            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
+        }
+
     </script>
 
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
@@ -67,11 +113,51 @@
             add_map_point(element.lat,element.lon)
 
         }
+
+        function buttons_disable()
+        {
+            const web = document.getElementById('web');
+            element=[[${item.getWebSite()}]];
+            console.log(element);
+            if (element==null) web.disabled = true;
+
+            const phone = document.getElementById('phone');
+            element=[[${item.getPhone()}]];
+            console.log(element);
+            if (element==null) phone.disabled = true;
+
+            const drive = document.getElementById('drive');
+            element=[[${item.getDriveThrough()}]];
+            console.log(element);
+            if (element==null) drive.disabled = true;
+
+            const open = document.getElementById('open');
+            element=[[${item.getOpenHours()}]];
+            console.log(element);
+            if (element==null) open.disabled = true;
+
+            const email = document.getElementById('email');
+            element=[[${item.getEmail()}]];
+            console.log(element);
+            if (element==null) email.disabled = true;
+
+            const building = document.getElementById('building');
+            element=[[${item.getBuilding()}]];
+            console.log(element);
+            if (element==null) building.disabled = true;
+
+            const wheelchair = document.getElementById('wheelchair');
+            element=[[${item.getWheelchair()}]];
+            console.log(element);
+            if (element==null) wheelchair.disabled = true;
+
+        }
+
         
     </script>
 
 </head>
-<body onload="initialize_map(); add_map_point_item()" >
+<body onload="initialize_map(); add_map_point_item(); buttons_disable()" >
 
 <nav class="clearfix">
 
@@ -160,13 +246,13 @@
             <tbody>
             <tr>
                 <td>
-                    <button>Web site</button>
+                    <button onclick="website()"  id="web" >Web site</button>
                 </td>
                 <td>
-                    <button>Phone</button>
+                    <button onclick="phone()"  id="phone">Phone</button>
                 </td>
                 <td>
-                    <button>Drive through</button>
+                    <button onclick="drive()"  id="drive">Drive through</button>
                 </td>
             </tr>
             <tr>
@@ -174,23 +260,23 @@
 <!--                    <button>Open hours</button>-->
 <!--                </td>-->
                 <td>
-                    <button onclick="openhours()">Open hours</button>
+                    <button onclick="openhours()" id="open">Open hours</button>
                 </td>
                 <td colspan="2" rowspan="4" id="spoeni"></td>
             </tr>
             <tr>
                 <td>
-                    <button>Email</button>
+                    <button onclick="email()" id="email">Email</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button>Building</button>
+                    <button onclick="building()" id="building">Building</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button>Wheelchair</button>
+                    <button onclick="wheelchair()" id="wheelchair">Wheelchair</button>
                 </td>
             </tr>
             </tbody>
