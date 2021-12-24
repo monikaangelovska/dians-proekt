@@ -11,6 +11,7 @@ body {
 }
 .clearfix {
 	/*zoom: 1;*/
+	width: 100%;
 }
 
 /*Dropdown menu style*/
@@ -71,13 +72,9 @@ body {
 }
 
 .clearfix input[type=text] {
-	float: none;
 	text-align: left;
-	width: 70%;
 	margin: 0;
-	padding: 14px;
-	border: 1px solid #ccc;
-	padding: 6px;
+	padding: 6px 6px 6px 0;
 	margin-top: 8px;
 	font-size: 17px;
 	border: none;
@@ -106,14 +103,13 @@ body {
 /* Basic Styles */
 #logo {
 	height: 40px;
+	padding: 0;
 
 }
 
 nav {
 	height: 40px;
 	width: 100%;
-	background: #000086;
-	background: #455868;
 	background: #00006b;
 	font-size: 11pt;
 	font-family: 'PT Sans', Arial, sans-serif;
@@ -147,7 +143,6 @@ nav a#pull {
 	border-color: lightskyblue;
 	position: relative;
 	margin: 9px;
-
 	width: 360px;
 	margin-top: 18px;
 	background-color: #f7f8fb;

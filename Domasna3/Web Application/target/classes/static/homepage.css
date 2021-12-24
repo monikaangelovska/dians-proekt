@@ -95,6 +95,7 @@ hr{
 }
 .clearfix {
     *zoom: 1;
+	width: 100%;
 }
 
 /*Dropdown menu style*/
