@@ -79,20 +79,20 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Categories
+                Категории
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:href="@{'/category/{cat}' (cat='Pharmacies')}">Pharmacies</a>
-                <a th:href="@{'/category/{cat}' (cat='Hospitals')}">Hospitals</a>
-                <a th:href="@{'/category/{cat}' (cat='Clinics')}">Clinics</a>
-                <a th:href="@{'/category/{cat}' (cat='Veterinarians')}">Veterinarians</a>
+                <a th:href="@{'/category/{cat}' (cat='Pharmacies')}">Аптеки</a>
+                <a th:href="@{'/category/{cat}' (cat='Hospitals')}">Болници</a>
+                <a th:href="@{'/category/{cat}' (cat='Clinics')}">Клиники</a>
+                <a th:href="@{'/category/{cat}' (cat='Veterinarians')}">Ветеринарни ординации</a>
             </div>
         </div>
 
         <div class="dropdown">
             <button class="dropbtn">
-                Pharmacies
+                Аптеки
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -102,7 +102,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Hospitals
+                Болници
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -112,7 +112,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Clinics
+                Клиники
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -122,16 +122,35 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Veterinarians
+                Ветеринарни ординации
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
                 <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}"><th:block th:text="${veterinary.getName()}"/></a>
             </div>
         </div>
+
+        <div class="dropdown" id="jazik">
+            <button class="dropbtn">
+                Јазик
+            </button>
+
+            <div class="dropdown-content">
+                <a href="#">
+                    <img src=
+                                 "https://www.worldatlas.com/img/flag/mk-flag.jpg"
+                         width="20" height="15"> МК</a>
+
+                <a href="#">
+                    <img src=
+                                 "https://jooinn.com/images/union-jack-clipart-15.png"
+                         width="20" height="15"> ENG</a>
+            </div>
+        </div>
+
         <div class ="dropdown" id="search-container">
             <form action="/search" method="POST">
-                <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
+                <input type="text" placeholder="Пребарај.." name="text" style="float: left; width: 70%;">
                 <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
             </form>
         </div>
@@ -139,7 +158,7 @@
 
 
 
-    <a href="javascript:void(0)" id="pull">Menu</a>
+    <a href="javascript:void(0)" id="pull">Мени</a>
 
 </nav>
 
