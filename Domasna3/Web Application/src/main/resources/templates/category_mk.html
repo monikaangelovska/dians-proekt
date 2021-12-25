@@ -4,7 +4,7 @@
 <head>
     <title>Search</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style_mk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
@@ -79,20 +79,20 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Categories
+                Категории
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:href="@{'/category/{cat}' (cat='Pharmacies')}">Pharmacies</a>
-                <a th:href="@{'/category/{cat}' (cat='Hospitals')}">Hospitals</a>
-                <a th:href="@{'/category/{cat}' (cat='Clinics')}">Clinics</a>
-                <a th:href="@{'/category/{cat}' (cat='Veterinarians')}">Veterinarians</a>
+                <a th:href="@{'/category/{cat}' (cat='Аптеки')}">Аптеки</a>
+                <a th:href="@{'/category/{cat}' (cat='Болници')}">Болници</a>
+                <a th:href="@{'/category/{cat}' (cat='Клиники')}">Клиники</a>
+                <a th:href="@{'/category/{cat}' (cat='Ветеринарни ординации')}">Ветеринарни ординации</a>
             </div>
         </div>
 
         <div class="dropdown">
             <button class="dropbtn">
-                Pharmacies
+                Аптеки
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -102,7 +102,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Hospitals
+                Болници
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -112,7 +112,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Clinics
+                Клиники
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -122,7 +122,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Veterinarians
+                Ветеринарни ординации
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -132,7 +132,7 @@
 
         <div class="dropdown" id="jazik">
             <button class="dropbtn">
-                Language
+                Јазик
             </button>
 
             <div class="dropdown-content">
@@ -150,7 +150,7 @@
 
         <div class ="dropdown" id="search-container">
             <form action="/search" method="POST">
-                <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
+                <input type="text" placeholder="Пребарај.." name="text" style="float: left; width: 70%;">
                 <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
             </form>
         </div>
@@ -158,7 +158,7 @@
 
 
 
-    <a href="javascript:void(0)" id="pull">Menu</a>
+    <a href="javascript:void(0)" id="pull">Мени</a>
 
 </nav>
 
@@ -168,10 +168,9 @@
 
 
 <div id='items' class="mapa">
-
     <div  class="tabela">
-<!--    lista    -->
-        <li th:if="${text}!=null" >Search results for "<em><th:block th:text="${text}"/></em>"</li>
+        <!--    lista    -->
+        <li th:if="${text}!=null">Резултати од пребарувањето за "<em><th:block th:text="${text}"/></em>"</li>
         <h1 th:text="${categoryName}"></h1>
         <li>
             <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
