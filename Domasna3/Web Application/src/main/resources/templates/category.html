@@ -136,12 +136,12 @@
             </button>
 
             <div class="dropdown-content">
-                <a href="#">
+                <a href="/mk">
                     <img src=
                                  "https://www.worldatlas.com/img/flag/mk-flag.jpg"
                          width="20" height="15"> МК</a>
 
-                <a href="#">
+                <a href="/ang">
                     <img src=
                                  "https://jooinn.com/images/union-jack-clipart-15.png"
                          width="20" height="15"> ENG</a>
@@ -168,8 +168,10 @@
 
 
 <div id='items' class="mapa">
+
     <div  class="tabela">
 <!--    lista    -->
+        <li th:if="${text}!=null" >Search results for "<em><th:block th:text="${text}"/></em>"</li>
         <h1 th:text="${categoryName}"></h1>
         <li>
             <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
