@@ -15,8 +15,8 @@
         var mapDefaultZoom = 13.3;
 
         function initialize_map() {
-            map = new ol.Map({
-                target: "map",
+            map_mk = new ol.Map({
+                target: "map_mk.html",
                 layers: [
                     new ol.layer.Tile({
                         source: new ol.source.OSM({
@@ -49,7 +49,7 @@
                 })
             });
 
-            map.addLayer(vectorLayer);
+            map_mk.addLayer(vectorLayer);
         }
 
         function add_map_points() {
@@ -75,6 +75,6 @@
 <body onload="initialize_map(); add_map_points()" >
 <div id="map" style="width: 750px; height: 550px;"></div>
 
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=20.141372680664066%2C41.764141783336456%2C21.02439880371094%2C42.099241380322944&amp;layer=mapnik&amp;marker=41.931911638000784%2C20.5828857421875" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=41.9319&amp;mlon=20.5829#map=11/41.9319/20.5829">Преглед на поголема карта</a></small>
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=20.141372680664066%2C41.764141783336456%2C21.02439880371094%2C42.099241380322944&amp;layer=mapnik&amp;marker=41.931911638000784%2C20.5828857421875" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/map_mk.html?mlat=41.9319&amp;mlon=20.5829#map=11/41.9319/20.5829">Преглед на поголема карта</a></small>
 </body>
 </html>
