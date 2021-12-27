@@ -76,8 +76,14 @@ public class SearchController {
     }
 
     @GetMapping()
-    public String getHomePage(HttpSession session,Model model)
+    public String getHomePage(@RequestParam(required = false) String error,  HttpSession session,Model model )
     {
+        if (error!=null)
+        {
+            model.addAttribute("error", "No result found");
+            if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
+                model.addAttribute("error", "Не се пронајдени резултати");
+        }
         model.addAttribute("pharmacies", searchService.findAllPharmacies());
         model.addAttribute("veterinaries", searchService.findAllVeterinaries());
         model.addAttribute("hospitals", searchService.findAllHospitals());
@@ -115,34 +121,31 @@ public class SearchController {
         model.addAttribute("veterinaries", searchService.findAllVeterinaries());
         model.addAttribute("hospitals", searchService.findAllHospitals());
         model.addAttribute("clinics", searchService.findAllClinics());
-        if("hospitals".contains(text.toLowerCase()) || "болница".contains(text.toLowerCase()) ||
-                "болници".contains(text.toLowerCase()) ) {
+        if("hospital".equals(text.toLowerCase()) ||"hospitals".equals(text.toLowerCase()) || "болница".equals(text.toLowerCase()) ||
+                "болници".equals(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllHospitals());
-//            model.addAttribute("categoryName", "Hospitals");
             if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
                 return "category_mk";
             return "category";
         }
-        else if("veterinary".contains(text.toLowerCase()) || "veterinaries".contains(text.toLowerCase())
-        || "veterinarians".contains(text.toLowerCase()) || "ветеринари".contains(text.toLowerCase()) ) {
+        else if("veterinary".equals(text.toLowerCase()) || "veterinaries".equals(text.toLowerCase())
+        || "veterinarians".equals(text.toLowerCase()) || "veterinarian".equals(text.toLowerCase())
+                || "ветеринари".equals(text.toLowerCase())|| "ветеринар".equals(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllVeterinaries());
-//            model.addAttribute("categoryName", "Veterinaries");
             if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
                 return "category_mk";
             return "category";
         }
-        else if("clinics".contains(text.toLowerCase()) ||"клиники".contains(text.toLowerCase())
-        || "клиника".contains(text.toLowerCase()) ) {
+        else if("clinic".equals(text.toLowerCase()) ||"clinics".equals(text.toLowerCase())
+                ||"клиники".equals(text.toLowerCase()) || "клиника".equals(text.toLowerCase()) ) {
             model.addAttribute("category", searchService.findAllClinics());
-//            model.addAttribute("categoryName", "Clinics");
             if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
                 return "category_mk";
             return "category";
         }
-        else if("pharmacy".contains(text.toLowerCase())||"pharmacies".contains(text.toLowerCase())
-        || "аптека".contains(text.toLowerCase())||"аптеки".contains(text.toLowerCase())) {
+        else if("pharmacy".equals(text.toLowerCase())||"pharmacies".equals(text.toLowerCase())
+        || "аптека".equals(text.toLowerCase())||"аптеки".equals(text.toLowerCase())) {
             model.addAttribute("category", searchService.findAllPharmacies());
-//            model.addAttribute("categoryName", "Pharmacies");
             if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
                 return "category_mk";
             return "category";
@@ -241,6 +244,7 @@ public class SearchController {
                     return "category";
                 }
             }
+            else  return "redirect:/?error=error";
 
         }
         return "redirect:/";
