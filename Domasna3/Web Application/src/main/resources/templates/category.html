@@ -151,8 +151,11 @@
 <div style="text-align:center" id='items' class="mapa">
     <div  class="tabela">
 <!--    lista    -->
-        <h3 th:text="${categoryName}"></h3>
-        <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
+        <li th:if="${text}!=null" >Search results for "<em><th:block th:text="${text}"/></em>"</li>
+        <h1 th:text="${categoryName}"></h1>
+        <li>
+            <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
+        </li>
     </div>
     <div class="mapouter"  >
         <div class="gmap_canvas">
