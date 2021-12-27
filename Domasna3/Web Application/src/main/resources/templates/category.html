@@ -129,6 +129,25 @@
                 <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}"><th:block th:text="${veterinary.getName()}"/></a>
             </div>
         </div>
+
+        <div class="dropdown" id="jazik">
+            <button class="dropbtn">
+                Language
+            </button>
+
+            <div class="dropdown-content">
+                <a href="/mk">
+                    <img src=
+                                 "https://www.worldatlas.com/img/flag/mk-flag.jpg"
+                         width="20" height="15"> МК</a>
+
+                <a href="/ang">
+                    <img src=
+                                 "https://jooinn.com/images/union-jack-clipart-15.png"
+                         width="20" height="15"> ENG</a>
+            </div>
+        </div>
+
         <div class ="dropdown" id="search-container">
             <form action="/search" method="POST">
                 <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
@@ -148,9 +167,10 @@
 
 
 
-<div style="text-align:center" id='items' class="mapa">
+<div id='items' class="mapa">
+
     <div  class="tabela">
-<!--    lista    -->
+        <!--    lista    -->
         <li th:if="${text}!=null" >Search results for "<em><th:block th:text="${text}"/></em>"</li>
         <h1 th:text="${categoryName}"></h1>
         <li>
