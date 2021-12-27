@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Comparator;
 
 @Data
 @Entity
@@ -23,6 +24,8 @@ public class Veterinary {
     private String phone;
     private String website;
     private String wheelchair;
+    public static Comparator<Veterinary> compareByName = (Veterinary o1, Veterinary o2) -> o1.getName().compareTo( o2.getName() );
+
     public Veterinary() {
     }
 

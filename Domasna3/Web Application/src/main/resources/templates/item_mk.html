@@ -4,7 +4,7 @@
 <head>
     <title>Search</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style_mk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
     <script th:inline="javascript">
@@ -153,7 +153,7 @@
 
         }
 
-        
+
     </script>
 
 </head>
@@ -168,20 +168,20 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Categories
+                Категории
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:href="@{'/category/{cat}' (cat='Pharmacies')}">Pharmacies</a>
-                <a th:href="@{'/category/{cat}' (cat='Hospitals')}">Hospitals</a>
-                <a th:href="@{'/category/{cat}' (cat='Clinics')}">Clinics</a>
-                <a th:href="@{'/category/{cat}' (cat='Veterinarians')}">Veterinarians</a>
+                <a th:href="@{'/category/{cat}' (cat='Аптеки')}">Аптеки</a>
+                <a th:href="@{'/category/{cat}' (cat='Болници')}">Болници</a>
+                <a th:href="@{'/category/{cat}' (cat='Клиники')}">Клиники</a>
+                <a th:href="@{'/category/{cat}' (cat='Ветеринарни ординации')}">Ветеринарни ординации</a>
             </div>
         </div>
 
         <div class="dropdown">
             <button class="dropbtn">
-                Pharmacies
+                Аптеки
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -191,7 +191,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Hospitals
+                Болници
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -201,7 +201,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Clinics
+                Клиники
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -211,7 +211,7 @@
 
         <div class="dropdown">
             <button class="dropbtn">
-                Veterinarians
+                Ветеринарни ординации
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -221,7 +221,7 @@
 
         <div class="dropdown" id="jazik">
             <button class="dropbtn">
-                Language
+                Јазик
             </button>
 
             <div class="dropdown-content">
@@ -239,14 +239,14 @@
 
         <div class ="dropdown" id="search-container">
             <form action="/search" method="POST">
-                <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
+                <input type="text" placeholder="Пребарај.." name="text" style="float: left; width: 70%;">
                 <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
             </form>
         </div>
     </div>
 
 
-    <a href="javascript:void(0)" id="pull">Menu</a>
+    <a href="javascript:void(0)" id="pull">Мени</a>
 
 </nav>
 
@@ -255,50 +255,48 @@
 
 
 <div style="text-align:center" id='items' class="mapa">
-
-
     <div class="tabela">
-        <span th:if="${text}!=null">Search results for "<em><th:block th:text="${text}"/></em>"</span>
+        <span th:if="${text}!=null">Резултати од пребарувањето за "<em><th:block th:text="${text}"/></em>"</span>
         <table cellspacing="5">
             <tr>
-                <th class="tabelaheader" colspan="2">
+                <th class="tabelaheader" colspan="3">
                     <th:block th:text="${item.getName()}"/>
                 </th>
             </tr>
             <tbody>
             <tr>
                 <td>
-                    <button onclick="website()"  id="web" >Web site</button>
+                    <button onclick="website()"  id="web" >Веб страна</button>
                 </td>
                 <td>
-                    <button onclick="phone()"  id="phone">Phone</button>
+                    <button onclick="phone()"  id="phone">Телефон</button>
                 </td>
                 <td>
-                    <button onclick="drive()"  id="drive">Drive through</button>
+                    <button onclick="drive()"  id="drive">Опција за подигање од кола</button>
                 </td>
             </tr>
             <tr>
-<!--                <td>-->
-<!--                    <button>Open hours</button>-->
-<!--                </td>-->
+                <!--                <td>-->
+                <!--                    <button>Open hours</button>-->
+                <!--                </td>-->
                 <td>
-                    <button onclick="openhours()" id="open">Open hours</button>
+                    <button onclick="openhours()" id="open">Работно време</button>
                 </td>
                 <td colspan="2" rowspan="4" id="spoeni"></td>
             </tr>
             <tr>
                 <td>
-                    <button onclick="email()" id="email">Email</button>
+                    <button onclick="email()" id="email">Е-мејл</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button onclick="building()" id="building">Building</button>
+                    <button onclick="building()" id="building">Зграда</button>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button onclick="wheelchair()" id="wheelchair">Wheelchair</button>
+                    <button onclick="wheelchair()" id="wheelchair">Инвалидска количка</button>
                 </td>
             </tr>
             </tbody>
@@ -307,8 +305,8 @@
     <div class="mapouter">
         <div class="gmap_canvas">
             <div id="map" style="width: 750px; height: 550px;"></div>
-<!--            <iframe width="750" height="550" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.396560668945312%2C41.986514347654946%2C21.451749801635746%2C42.007436701005446&amp;layer=mapnik&amp;marker=41.99697638413486%2C21.424155235290527" style="border: 1px solid black"></iframe><br/>-->
-<!--            <small><a href="https://www.openstreetmap.org/?mlat=41.9970&amp;mlon=21.4242#map=15/41.9970/21.4242">Преглед на поголема карта</a></small>-->
+            <!--            <iframe width="750" height="550" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.396560668945312%2C41.986514347654946%2C21.451749801635746%2C42.007436701005446&amp;layer=mapnik&amp;marker=41.99697638413486%2C21.424155235290527" style="border: 1px solid black"></iframe><br/>-->
+            <!--            <small><a href="https://www.openstreetmap.org/?mlat=41.9970&amp;mlon=21.4242#map=15/41.9970/21.4242">Преглед на поголема карта</a></small>-->
         </div>
     </div>
 </div>
