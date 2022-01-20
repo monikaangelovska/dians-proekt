@@ -13,12 +13,9 @@ import java.util.Optional;
 
 @Repository
 public interface Clinic_repository extends JpaRepository<Clinic, Long> {
-    Optional<Clinic> findByName(String name);
 
-    Optional<Clinic> findById(long id);
 
     List<Clinic> findByNameIgnoreCaseContains(String text);
 
-    //List<Clinic> findAll();
 
 }
