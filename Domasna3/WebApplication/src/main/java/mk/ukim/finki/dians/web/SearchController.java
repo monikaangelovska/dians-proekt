@@ -19,18 +19,7 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    @GetMapping("/map")
-    public String getMap(Model model)
-    {
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
-        model.addAttribute("message", "messageText");
-        System.out.println( searchService.findAllPharmacies().size());
-        System.out.println(searchService.findAllPharmacies().get(0).getLat());
-        return "map";
-    }
+
 
     @GetMapping("/mk")
     public String getMk(HttpSession session,Model model)
