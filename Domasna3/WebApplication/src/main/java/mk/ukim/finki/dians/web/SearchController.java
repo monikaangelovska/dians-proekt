@@ -1,8 +1,10 @@
 package mk.ukim.finki.dians.web;
 
+import mk.ukim.finki.dians.model.Clinic;
+import mk.ukim.finki.dians.model.Hospital;
 import mk.ukim.finki.dians.model.Pharmacy;
+import mk.ukim.finki.dians.model.Veterinary;
 import mk.ukim.finki.dians.service.SearchService;
-import org.apache.catalina.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +26,7 @@ public class SearchController {
     @GetMapping("/mk")
     public String getMk(HttpSession session,Model model)
     {
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
+        this.addModelAttr(model);
         session.setAttribute("lan", "mk");
         return "home_mk";
     }
@@ -35,10 +34,7 @@ public class SearchController {
     @GetMapping("/ang")
     public String getAng(HttpSession session,Model model)
     {
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
+        this.addModelAttr(model);
         session.setAttribute("lan", "ang");
         return "home";
     }
@@ -46,19 +42,26 @@ public class SearchController {
     @GetMapping("/category/{cat}")
     public String getCategory(HttpSession session,@PathVariable String cat, Model model)
     {
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
+        this.addModelAttr(model);
         model.addAttribute("categoryName", cat);
-        if(cat.equals("Pharmacies") || cat.equals("Аптеки"))
-            model.addAttribute("category", searchService.findAllPharmacies());
-        else if(cat.equals("Hospitals") || cat.equals("Болници"))
-            model.addAttribute("category", searchService.findAllHospitals());
-        else if(cat.equals("Clinics") || cat.equals("Клиники"))
-            model.addAttribute("category", searchService.findAllClinics());
-        else if(cat.equals("Veterinarians") || cat.equals("Ветеринарни ординации"))
-            model.addAttribute("category", searchService.findAllVeterinaries());
+        switch (cat) {
+            case "Pharmacies":
+            case "Аптеки":
+                model.addAttribute("category", searchService.findAllPharmacies());
+                break;
+            case "Hospitals":
+            case "Болници":
+                model.addAttribute("category", searchService.findAllHospitals());
+                break;
+            case "Clinics":
+            case "Клиники":
+                model.addAttribute("category", searchService.findAllClinics());
+                break;
+            case "Veterinarians":
+            case "Ветеринарни ординации":
+                model.addAttribute("category", searchService.findAllVeterinaries());
+                break;
+        }
         if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
             return "category_mk";
         return "category";
@@ -73,10 +76,7 @@ public class SearchController {
             if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
                 model.addAttribute("error", "Не се пронајдени резултати");
         }
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
+        this.addModelAttr(model);
         if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
             return "home_mk";
         return "home";
@@ -85,10 +85,7 @@ public class SearchController {
     @GetMapping("/show/{id}")
     public String getItemPage(HttpSession session,@PathVariable Long id, Model model)
     {
-        model.addAttribute("pharmacies", searchService.findAllPharmacies());
-        model.addAttribute("veterinaries", searchService.findAllVeterinaries());
-        model.addAttribute("hospitals", searchService.findAllHospitals());
-        model.addAttribute("clinics", searchService.findAllClinics());
+        this.addModelAttr(model);
         if(searchService.findByIdHospital(id).isPresent())
             model.addAttribute("item", searchService.findByIdHospital(id).get());
         else if(searchService.findByIdVeterinary(id).isPresent())
@@ -106,138 +103,127 @@ public class SearchController {
     public String postSearch(HttpSession session,@RequestParam(required = false) String text, Model model)
     {
         model.addAttribute("text", text);
+        this.addModelAttr(model);
+        switch (text.toLowerCase()) {
+            case "hospital":
+            case "hospitals":
+            case "болница":
+            case "болници":
+                model.addAttribute("category", searchService.findAllHospitals());
+                if (session.getAttribute("lan") != null && session.getAttribute("lan").equals("mk"))
+                    return "category_mk";
+                return "category";
+            case "veterinary":
+            case "veterinaries":
+            case "veterinarians":
+            case "veterinarian":
+            case "ветеринари":
+            case "ветеринар":
+                model.addAttribute("category", searchService.findAllVeterinaries());
+                if (session.getAttribute("lan") != null && session.getAttribute("lan").equals("mk"))
+                    return "category_mk";
+                return "category";
+            case "clinic":
+            case "clinics":
+            case "клиники":
+            case "клиника":
+                model.addAttribute("category", searchService.findAllClinics());
+                if (session.getAttribute("lan") != null && session.getAttribute("lan").equals("mk"))
+                    return "category_mk";
+                return "category";
+            case "pharmacy":
+            case "pharmacies":
+            case "аптека":
+            case "аптеки":
+                model.addAttribute("category", searchService.findAllPharmacies());
+                if (session.getAttribute("lan") != null && session.getAttribute("lan").equals("mk"))
+                    return "category_mk";
+                return "category";
+        }
+        if(!text.equals("")) {
+            if (searchService.findByNameHospital(text).size()>0)
+                return findByText("Hospital", text, model, session);
+
+            else if (searchService.findByNameVeterinary(text).size()>0)
+                return findByText("Veterinary", text, model, session);
+
+            else if (searchService.findByNameClinic(text).size()>0)
+                return findByText("Clinic", text, model, session);
+
+            else if (searchService.findByNamePharmacy(text).size()>0)
+                return findByText("Pharmacy", text, model, session);
+
+            else  return "redirect:/?error=error";
+        }
+        return "redirect:/";
+    }
+
+    private String findByText(String building,String text, Model model, HttpSession session)
+    {
+        switch (building) {
+            case "Hospital": {
+                List<Hospital> list = searchService.findByNameHospital(text);
+                if (list.size() == 1) {
+                    model.addAttribute("item", list.get(0));
+                    return this.returnItem(session);
+                } else {
+                    model.addAttribute("category", list);
+                    return this.returnCategory(session);
+                }
+            }
+            case "Clinic": {
+                List<Clinic> list = searchService.findByNameClinic(text);
+                if (list.size() == 1) {
+                    model.addAttribute("item", list.get(0));
+                    return this.returnItem(session);
+                } else {
+                    model.addAttribute("category", list);
+                    return this.returnCategory(session);
+                }
+            }
+            case "Veterinary": {
+                List<Veterinary> list = searchService.findByNameVeterinary(text);
+                if (list.size() == 1) {
+                    model.addAttribute("item", list.get(0));
+                    return this.returnItem(session);
+                } else {
+                    model.addAttribute("category", list);
+                    return this.returnCategory(session);
+                }
+            }
+            default: // default: категорија Pharmacy
+                {
+                List<Pharmacy> list = searchService.findByNamePharmacy(text);
+                if (list.size() == 1) {
+                    model.addAttribute("item", list.get(0));
+                    return this.returnItem(session);
+                } else {
+                    model.addAttribute("category", list);
+                    return this.returnCategory(session);
+                }
+            }
+        }
+    }
+
+    private String returnItem(HttpSession session)
+    {
+        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
+            return "item_mk";
+        return "item";
+    }
+
+    private String returnCategory(HttpSession session)
+    {
+        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
+            return "category_mk";
+        return "category";
+    }
+
+    private void addModelAttr(Model model)
+    {
         model.addAttribute("pharmacies", searchService.findAllPharmacies());
         model.addAttribute("veterinaries", searchService.findAllVeterinaries());
         model.addAttribute("hospitals", searchService.findAllHospitals());
         model.addAttribute("clinics", searchService.findAllClinics());
-        if("hospital".equals(text.toLowerCase()) ||"hospitals".equals(text.toLowerCase()) || "болница".equals(text.toLowerCase()) ||
-                "болници".equals(text.toLowerCase()) ) {
-            model.addAttribute("category", searchService.findAllHospitals());
-            if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                return "category_mk";
-            return "category";
-        }
-        else if("veterinary".equals(text.toLowerCase()) || "veterinaries".equals(text.toLowerCase())
-        || "veterinarians".equals(text.toLowerCase()) || "veterinarian".equals(text.toLowerCase())
-                || "ветеринари".equals(text.toLowerCase())|| "ветеринар".equals(text.toLowerCase()) ) {
-            model.addAttribute("category", searchService.findAllVeterinaries());
-            if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                return "category_mk";
-            return "category";
-        }
-        else if("clinic".equals(text.toLowerCase()) ||"clinics".equals(text.toLowerCase())
-                ||"клиники".equals(text.toLowerCase()) || "клиника".equals(text.toLowerCase()) ) {
-            model.addAttribute("category", searchService.findAllClinics());
-            if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                return "category_mk";
-            return "category";
-        }
-        else if("pharmacy".equals(text.toLowerCase())||"pharmacies".equals(text.toLowerCase())
-        || "аптека".equals(text.toLowerCase())||"аптеки".equals(text.toLowerCase())) {
-            model.addAttribute("category", searchService.findAllPharmacies());
-            if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                return "category_mk";
-            return "category";
-        }
-        if(text!="") {
-            if("zegin".contains(text.toLowerCase()) || "зегин".contains(text.toLowerCase()))
-            {
-                List<Pharmacy> list1=searchService.findByNamePharmacy("zegin");
-                List<Pharmacy> list2=searchService.findByNamePharmacy("зегин");
-                list1.addAll(list2);
-                list1.sort(Pharmacy.compareByName);
-                model.addAttribute("category", list1);
-                if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                    return "category_mk";
-                return "category";
-            }
-            else if("eurofarm".contains(text.toLowerCase()) || "еурофарм".contains(text.toLowerCase()))
-            {
-                List<Pharmacy> list1=searchService.findByNamePharmacy("eurofarm");
-                List<Pharmacy> list2=searchService.findByNamePharmacy("еурофарм");
-                list1.addAll(list2);
-                list1.sort(Pharmacy.compareByName);
-                model.addAttribute("category", list1);
-                if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                    return "category_mk";
-                return "category";
-            }
-            else if (searchService.findByNameHospital(text).size()>0)
-            {
-                if(searchService.findByNameHospital(text).size()==1)
-                {
-                    model.addAttribute("item", searchService.findByNameHospital(text).get(0));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "item_mk";
-                    return "item";
-                }
-                else
-                {
-                    model.addAttribute("category", searchService.findByNameHospital(text));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "category_mk";
-                    return "category";
-                }
-            }
-
-            else if (searchService.findByNameVeterinary(text).size()>0)
-            {
-                if (searchService.findByNameVeterinary(text).size()==1)
-                {
-                    model.addAttribute("item", searchService.findByNameVeterinary(text).get(0));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "item_mk";
-                    return "item";
-                }
-                else
-                {
-                    model.addAttribute("category", searchService.findByNameVeterinary(text));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "category_mk";
-                    return "category";
-                }
-            }
-
-            else if (searchService.findByNameClinic(text).size()>0)
-            {
-                if (searchService.findByNameClinic(text).size()==1)
-                {
-                    model.addAttribute("item", searchService.findByNameClinic(text).get(0));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "item_mk";
-                    return "item";
-                }
-                else
-                {
-                    model.addAttribute("category", searchService.findByNameClinic(text));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "category_mk";
-                    return "category";
-                }
-            }
-
-            else if (searchService.findByNamePharmacy(text).size()>0)
-            {
-                if (searchService.findByNamePharmacy(text).size()==1)
-                {
-                    model.addAttribute("item", searchService.findByNamePharmacy(text).get(0));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "item_mk";
-                    return "item";
-                }
-                else
-                {
-                    model.addAttribute("category", searchService.findByNamePharmacy(text));
-                    if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-                        return "category_mk";
-                    return "category";
-                }
-            }
-            else  return "redirect:/?error=error";
-
-        }
-        return "redirect:/";
-
     }
-
 }

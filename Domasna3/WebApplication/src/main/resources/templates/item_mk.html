@@ -4,6 +4,8 @@
 <head>
     <title>Search</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="/global_style.css">
+
     <link rel="stylesheet" href="/style_mk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
@@ -13,49 +15,42 @@
             element=[[${item.getWebSite()}]];
             console.log(element);
             spoeno.innerHTML=`<a href="${element}" target="_blank"> ${element} </a>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function phone() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getPhone()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function drive() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getDriveThrough()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function openhours() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getOpenHours()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function email() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getEmail()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function building() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getBuilding()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
         function wheelchair() {
             var spoeno = document.getElementById('spoeni');
             element=[[${item.getWheelchair()}]];
             console.log(element);
             spoeno.innerHTML=`<p> ${element} </p>` ;
-            // spoeno.innerHTML = '<img id="openhours" src="/pics/openhours.png" alt="Openhours">';
         }
 
     </script>
@@ -100,8 +95,6 @@
                         anchorXUnits: "fraction",
                         anchorYUnits: "fraction",
                         src:"https://www.openstreetmap.org/assets/leaflet/dist/images/marker-icon-3d253116ec4ba0e1f22a01cdf1ff7f120fa4d89a6cd0933d68f12951d19809b4.png"
-                        //
-                        // src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/RedDot.svg"
                     })
                 })
             });
@@ -276,9 +269,6 @@
                 </td>
             </tr>
             <tr>
-                <!--                <td>-->
-                <!--                    <button>Open hours</button>-->
-                <!--                </td>-->
                 <td>
                     <button onclick="openhours()" id="open">Работно време</button>
                 </td>
@@ -305,8 +295,6 @@
     <div class="mapouter">
         <div class="gmap_canvas">
             <div id="map" style="width: 750px; height: 550px;"></div>
-            <!--            <iframe width="750" height="550" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.396560668945312%2C41.986514347654946%2C21.451749801635746%2C42.007436701005446&amp;layer=mapnik&amp;marker=41.99697638413486%2C21.424155235290527" style="border: 1px solid black"></iframe><br/>-->
-            <!--            <small><a href="https://www.openstreetmap.org/?mlat=41.9970&amp;mlon=21.4242#map=15/41.9970/21.4242">Преглед на поголема карта</a></small>-->
         </div>
     </div>
 </div>

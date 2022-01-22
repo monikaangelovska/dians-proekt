@@ -13,12 +13,8 @@ import java.util.Optional;
 
 @Repository
 public interface Veterinary_repository extends JpaRepository<Veterinary, Long> {
-    Optional<Veterinary> findByName(String name);
 
-    Optional<Veterinary> findById(long id);
 
     List<Veterinary> findByNameIgnoreCaseContains(String text);
-
-    //List<Veterinary> findAll();
 
 }
