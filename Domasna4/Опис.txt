@@ -1,0 +1,1 @@
+Design pattern, microservices and publishing - се што е направено во оваа домашна
