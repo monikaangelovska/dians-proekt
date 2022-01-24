@@ -1,7 +1,6 @@
 package mk.ukim.finki.dians.clinics.web;
 
 import lombok.extern.slf4j.Slf4j;
-import mk.ukim.finki.dians.clinics.VO.WrapperClinic;
 import mk.ukim.finki.dians.clinics.model.Clinic;
 import mk.ukim.finki.dians.clinics.service.Clinic_service;
 import org.springframework.beans.factory.annotation.Autowired;
