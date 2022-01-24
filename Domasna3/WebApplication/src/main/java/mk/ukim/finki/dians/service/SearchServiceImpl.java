@@ -101,7 +101,7 @@ public class SearchServiceImpl implements SearchService{
 
     @Override
     public List<Clinic> findByNameClinic(String text) {
-        if(clinic_repository.findByNameIgnoreCaseContains(text).size()>0)
+        if(clinic_repository.findByNameIgnoreCaseContains(text).size()>1)
         {
             List<Clinic> clinics=clinic_repository.findByNameIgnoreCaseContains(text);
             clinics.sort(Clinic.compareByName);

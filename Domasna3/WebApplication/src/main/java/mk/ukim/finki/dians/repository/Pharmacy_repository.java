@@ -12,12 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface Pharmacy_repository extends JpaRepository<Pharmacy, Long> {
-    Optional<Pharmacy> findByName(String name);
 
-    Optional<Pharmacy> findById(long id);
 
     List<Pharmacy> findByNameIgnoreCaseContains(String text);
 
-    //List<Clinic> findAll();
 
 }
