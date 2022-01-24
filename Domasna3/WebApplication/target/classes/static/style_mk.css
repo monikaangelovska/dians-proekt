@@ -1,0 +1,41 @@
+
+.canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 550px;
+    width: 580px;
+}
+
+#doktorche {
+    width: 20%;
+    margin-left: auto;
+    margin-right: 15%;
+    position: absolute;
+    right: 0;
+    bottom: 5%;
+}
+
+#tekst {
+    font-size: 90px;
+    padding-left: 15%;
+    font-family: OpenSans, sans-serif;
+    /*font-family: "League Spartan", sans-serif;*/
+    width: 50%;
+}
+
+#health {
+    font-size: 22px;
+    color: white;
+    margin-top: 10%;
+    margin-left: 2%;
+    font-family: OpenSansLight, sans-serif;
+    /*font-family: "League Spartan", sans-serif;*/
+}
+
+.error{
+    text-align: right;
+    margin-right: 40px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: OpenSansLight, sans-serif;
+}

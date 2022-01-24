@@ -33,4 +33,5 @@ public class PharmacyService {
         }
         return pharmacyRepository.findByNameIgnoreCaseContains(text);
     }
+
 }

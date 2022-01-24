@@ -34,4 +34,6 @@ public class Clinic_service {
         }
         return clinic_repository.findByNameIgnoreCaseContains(text);
     }
+
+
 }
