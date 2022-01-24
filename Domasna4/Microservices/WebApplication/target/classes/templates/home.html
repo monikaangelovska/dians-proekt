@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/global_style.css">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+</head>
+<body>
+<nav class="clearfix">
+
+    <div class="clearfix">
+        <div class="dropdown">
+            <a href="/"><img id="logo" src="pics/logo.png"></a>
+        </div>
+
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Categories
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:href="@{'/category/{cat}' (cat='Pharmacies')}">Pharmacies</a>
+                <a th:href="@{'/category/{cat}' (cat='Hospitals')}">Hospitals</a>
+                <a th:href="@{'/category/{cat}' (cat='Clinics')}">Clinics</a>
+                <a th:href="@{'/category/{cat}' (cat='Veterinarians')}">Veterinarians</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Pharmacies
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="pharmacy: ${pharmacies}" th:href="@{'/show/{id}' (id=${pharmacy.getId()})}"><th:block th:text="${pharmacy.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Hospitals
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="hospital: ${hospitals}" th:href="@{'/show/{id}' (id=${hospital.getId()})}"><th:block th:text="${hospital.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Clinics
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="clinic: ${clinics}" th:href="@{'/show/{id}' (id=${clinic.getId()})}"><th:block th:text="${clinic.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Veterinarians
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}"><th:block th:text="${veterinary.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="jazik">
+            <button class="dropbtn">
+                Language
+            </button>
+
+            <div class="dropdown-content">
+                <a href="/mk">
+                    <img src=
+                                 "https://www.worldatlas.com/img/flag/mk-flag.jpg"
+                         width="20" height="15"> МК</a>
+
+                <a href="/ang">
+                    <img src=
+                                 "https://jooinn.com/images/union-jack-clipart-15.png"
+                         width="20" height="15"> ENG</a>
+            </div>
+        </div>
+
+        <div class ="dropdown" id="search-container">
+            <form action="/search" method="POST">
+                <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
+                <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <a href="javascript:void(0)" id="pull">Menu</a>
+
+</nav>
+<p class="error" ><th:block th:text="${error}"></th:block></p>
+<br>
+<div id="dolen">
+    <div id="doktor">
+        <p id="tekst">Highest <br>quality health<br> care for all
+            <br><span id="sin_tekst">Everything we need on one map</span>
+        </p>
+        <img id="doktorche" src="pics/slika1.png">
+    </div>
+    <div id="plava">
+        <div>
+            <img src="pics/slika2.jpg">
+        </div>
+        <div id="health">
+            <p>Health<br> Comes<br> First </p><hr><p></p>
+        </div>
+    </div>
+    <div id="mapa">
+        <div id="div_so_opis"> <!--Ovde se naogja opisot sho e dole levo na stranata-->
+            <p id="opis_dole_na_strana"><b>You are in the Right Place at the Right Time</b><br></p>
+            <span>
+                With our application you can find all the necessary locations near you.<br>
+                Select a category or the type in the search box, we will find all hospitals, pharmacies,<br>
+                clinics or veterinarians that you can find along with some additional information about them.
+            </span>
+        </div>
+        <div>
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.396560668945312%2C41.986514347654946%2C21.451749801635746%2C42.007436701005446&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body></html>

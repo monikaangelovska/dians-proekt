@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/global_style.css">
+
+    <link rel="stylesheet" href="/style_mk.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+</head>
+<body>
+<nav class="clearfix">
+
+    <div class="clearfix">
+        <div class="dropdown">
+            <a href="/"><img id="logo" src="pics/logo.png"></a>
+        </div>
+
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Категории
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:href="@{'/category/{cat}' (cat='Аптеки')}">Аптеки</a>
+                <a th:href="@{'/category/{cat}' (cat='Болници')}">Болници</a>
+                <a th:href="@{'/category/{cat}' (cat='Клиники')}">Клиники</a>
+                <a th:href="@{'/category/{cat}' (cat='Ветеринарни ординации')}">Ветеринарни ординации</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Аптеки
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="pharmacy: ${pharmacies}" th:href="@{'/show/{id}' (id=${pharmacy.getId()})}"><th:block th:text="${pharmacy.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Болници
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="hospital: ${hospitals}" th:href="@{'/show/{id}' (id=${hospital.getId()})}"><th:block th:text="${hospital.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Клиники
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="clinic: ${clinics}" th:href="@{'/show/{id}' (id=${clinic.getId()})}"><th:block th:text="${clinic.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                Ветеринарни ординации
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}"><th:block th:text="${veterinary.getName()}"/></a>
+            </div>
+        </div>
+
+        <div class="dropdown" id="jazik">
+            <button class="dropbtn">
+                Јазик
+            </button>
+
+            <div class="dropdown-content">
+                <a href="/mk">
+                    <img src=
+                                 "https://www.worldatlas.com/img/flag/mk-flag.jpg"
+                         width="20" height="15"> МК</a>
+
+                <a href="/ang">
+                    <img src=
+                                 "https://jooinn.com/images/union-jack-clipart-15.png"
+                         width="20" height="15"> ENG</a>
+            </div>
+        </div>
+
+        <div class ="dropdown" id="search-container">
+            <form action="/search" method="POST">
+                <input type="text" placeholder="Пребарај.." name="text" style="float: left; width: 70%;">
+                <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <a href="javascript:void(0)" id="pull">Мени</a>
+
+</nav>
+<p class="error" ><th:block th:text="${error}"></th:block></p>
+<br>
+<div id="dolen">
+    <div id="doktor">
+        <p id="tekst">Здравство со <br>највисок квалитет<br> за сите
+            <br><span id="sin_tekst">Се што ни треба на една мапа</span>
+        </p>
+        <img id="doktorche" src="pics/slika1.png">
+    </div>
+    <div id="plava">
+        <div>
+            <img src="pics/slika2.jpg">
+        </div>
+        <div id="health">
+            <p>Здравјето<br> Доаѓа<br> Прво </p><hr><p></p>
+        </div>
+    </div>
+    <div id="mapa">
+        <div id="div_so_opis"> <!--Ovde se naogja opisot sho e dole levo na stranata-->
+            <p id="opis_dole_na_strana"><b>Ти си на вистинското место во вистинското време</b><br></p>
+            <span>
+                Со нашата апликација ти можеш да ги најдеш сите потребни локации блиску до тебе<br>
+                Избери категорија или тип во пребарувачот, ние ќе ги најдеме сите болници, аптеки,<br>
+                клиники или ветеринарни ординации кои можеш да ги најдеш заедно со дополнителни информации за нив.
+            </span>
+        </div>
+        <div>
+            <div class="mapouter">
+                <div class="canvas">
+                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.396560668945312%2C41.986514347654946%2C21.451749801635746%2C42.007436701005446&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body></html>

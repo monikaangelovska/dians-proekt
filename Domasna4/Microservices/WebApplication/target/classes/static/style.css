@@ -1,0 +1,32 @@
+
+#doktorche {
+	width: 20%;
+	margin-left: auto;
+	margin-right: 20%;
+	position: absolute;
+	right: 0;
+	bottom: 5%;
+}
+
+#tekst {
+	font-size: 90px;
+	padding-left: 15%;
+	font-family: "League Spartan", sans-serif;
+	width: 40%;
+}
+
+#health {
+	font-size: 22px;
+	color: white;
+	margin-top: 10%;
+	margin-left: 2%;
+	font-family: "League Spartan", sans-serif;
+}
+
+.error{
+	text-align: right;
+	margin-right: 50px;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: OpenSansLight, sans-serif;
+}
