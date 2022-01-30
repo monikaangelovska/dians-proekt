@@ -1,0 +1,16 @@
+services:
+  api_service:
+    build: .
+    restart: always
+    ports:
+      - 9001:9001 #dali ovaa porta ni treba ovde
+    depends_on:
+      - postgres_db
+  postgres_db:
+    image: "postgres:11.4"
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: Nikolapass1212.
