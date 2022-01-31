@@ -90,5 +90,4 @@ public class Clinic {
     public String getWheelchair() {
         return wheelchair;
     }
-    //сите непотребни сет методи се тргнати
 }

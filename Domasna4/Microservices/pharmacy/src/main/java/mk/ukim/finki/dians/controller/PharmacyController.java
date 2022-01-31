@@ -21,13 +21,12 @@ public class PharmacyController {
 
     @GetMapping("/show/{id}")
     public List<Pharmacy> findDepartmentById(@PathVariable("id") Long pharmacyId) {
-        List<Pharmacy> hospitals=new ArrayList<>();
+        List<Pharmacy> pharmacies=new ArrayList<>();
         if(pharmacyService.findByIdPharmacy(pharmacyId).isPresent())
         {
-            hospitals.add(pharmacyService.findByIdPharmacy(pharmacyId).get());
+            pharmacies.add(pharmacyService.findByIdPharmacy(pharmacyId).get());
         }
-        return hospitals;
-//        return pharmacyService.findByIdPharmacy(pharmacyId).get();
+        return pharmacies;
     }
 
     @GetMapping("/all")
@@ -36,7 +35,7 @@ public class PharmacyController {
     }
 
     @GetMapping("/name/{name}")
-    public List<Pharmacy> findByName(@PathVariable("name") String clinic) {
-        return pharmacyService.findByNamePharmacy(clinic);
+    public List<Pharmacy> findByName(@PathVariable("name") String pharmacy) {
+        return pharmacyService.findByNamePharmacy(pharmacy);
     }
 }

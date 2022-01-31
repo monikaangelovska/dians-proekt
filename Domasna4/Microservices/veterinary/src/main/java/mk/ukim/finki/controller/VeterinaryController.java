@@ -25,7 +25,6 @@ public class VeterinaryController {
             hospitals.add(veterinaryService.findByIdVeterinary(veterinaryId).get());
         }
         return hospitals;
-//        return veterinaryService.findByIdVeterinary(veterinaryId).get();
     }
 
 
@@ -35,7 +34,7 @@ public class VeterinaryController {
     }
 
     @GetMapping("/name/{name}")
-    public List<Veterinary> findByName(@PathVariable("name") String clinic) {
-        return veterinaryService.findByNameVeterinary(clinic);
+    public List<Veterinary> findByName(@PathVariable("name") String veterinary) {
+        return veterinaryService.findByNameVeterinary(veterinary);
     }
 }

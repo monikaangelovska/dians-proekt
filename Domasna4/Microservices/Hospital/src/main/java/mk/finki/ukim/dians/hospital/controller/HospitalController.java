@@ -19,26 +19,14 @@ public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
 
-//    @GetMapping("/show/{id}")
-//    public WrapperHospital findVeterinaryById(@PathVariable("id") Long veterinaryId) {
-////        WrapperHospital wrapperHospital;
-////        if(hospitalService.findByIdHospital(veterinaryId).isPresent())
-////        {
-////            return new WrapperHospital(hospitalService.findByIdHospital(veterinaryId).get());
-////        }
-////        wrapperHospital= new WrapperHospital(null);
-////        return wrapperHospital;
-//        return  hospitalService.findByIdHospital(veterinaryId).get();
-//    }
     @GetMapping("/show/{id}")
-    public List<Hospital> findVeterinaryById(@PathVariable("id") Long veterinaryId) {
+    public List<Hospital> findVeterinaryById(@PathVariable("id") Long hospitalId) {
         List<Hospital> hospitals=new ArrayList<>();
-        if(hospitalService.findByIdHospital(veterinaryId).isPresent())
+        if(hospitalService.findByIdHospital(hospitalId).isPresent())
         {
-            hospitals.add(hospitalService.findByIdHospital(veterinaryId).get());
+            hospitals.add(hospitalService.findByIdHospital(hospitalId).get());
         }
         return hospitals;
-//        return  hospitalService.findByIdHospital(veterinaryId).get();
     }
     @GetMapping("/all")
     public List<Hospital> findAll() {
@@ -46,8 +34,8 @@ public class HospitalController {
     }
 
     @GetMapping("/name/{name}")
-    public List<Hospital> findByName(@PathVariable("name") String clinic) {
+    public List<Hospital> findByName(@PathVariable("name") String hospital) {
 
-        return hospitalService.findByNameHospital(clinic);
+        return hospitalService.findByNameHospital(hospital);
     }
 }

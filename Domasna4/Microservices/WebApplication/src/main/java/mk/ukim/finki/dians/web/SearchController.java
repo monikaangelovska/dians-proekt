@@ -98,49 +98,7 @@ public class SearchController {
             return "item_mk";
         return "item";
     }
-//
-//    @GetMapping("/show/clinic/{id}")
-//    public String getClinicPage(HttpSession session,@PathVariable Long id, Model model)
-//    {
-//        this.addModelAttr(model);
-//        if(searchService.findByIdClinic(id).isPresent())
-//            model.addAttribute("item", searchService.findByIdClinic(id).get());
-//        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-//            return "item_mk";
-//        return "item";
-//    }
-//
-//    @GetMapping("/show/hospital/{id}")
-//    public String getHospitalPage(HttpSession session,@PathVariable Long id, Model model)
-//    {
-//        this.addModelAttr(model);
-//        if(searchService.findByIdHospital(id).isPresent())
-//            model.addAttribute("item", searchService.findByIdHospital(id).get());
-//        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-//            return "item_mk";
-//        return "item";
-//    }
-//
-//    @GetMapping("/show/veterinary/{id}")
-//    public String getVeterinaryPage(HttpSession session,@PathVariable Long id, Model model)
-//    {
-//        this.addModelAttr(model);
-//        if(searchService.findByIdVeterinary(id).isPresent())
-//            model.addAttribute("item", searchService.findByIdVeterinary(id).get());
-//        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-//            return "item_mk";
-//        return "item";
-//    }
-//    @GetMapping("/show/pharmacy/{id}")
-//    public String getPharmacyPage(HttpSession session,@PathVariable Long id, Model model)
-//    {
-//        this.addModelAttr(model);
-//        if(searchService.findByIdPharmacy(id).isPresent())
-//            model.addAttribute("item", searchService.findByIdPharmacy(id).get());
-//        if(session.getAttribute("lan")!=null && session.getAttribute("lan").equals("mk"))
-//            return "item_mk";
-//        return "item";
-//    }
+
 
     @PostMapping("search")
     public String postSearch(HttpSession session,@RequestParam(required = false) String text, Model model)

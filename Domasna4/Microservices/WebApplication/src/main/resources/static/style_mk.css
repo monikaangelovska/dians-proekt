@@ -19,7 +19,6 @@
     font-size: 90px;
     padding-left: 15%;
     font-family: OpenSans, sans-serif;
-    /*font-family: "League Spartan", sans-serif;*/
     width: 50%;
 }
 
@@ -29,7 +28,6 @@
     margin-top: 10%;
     margin-left: 2%;
     font-family: OpenSansLight, sans-serif;
-    /*font-family: "League Spartan", sans-serif;*/
 }
 
 .error{

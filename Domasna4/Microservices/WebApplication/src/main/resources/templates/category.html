@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Search</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="stylesheet" href="/global_style.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +12,6 @@
     <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
 
     <script th:inline="javascript">
-        /* OSM & OL example code provided by https://mediarealm.com.au/ */
         var map;
         var mapLat = 41.995;
         var mapLng = 21.43;
@@ -37,7 +36,7 @@
 
         function add_map_point(lat, lng) {
             var vectorLayer = new ol.layer.Vector({
-                source:new ol.source.Vector({
+                source: new ol.source.Vector({
                     features: [new ol.Feature({
                         geometry: new ol.geom.Point(ol.proj.transform([parseFloat(lng), parseFloat(lat)], 'EPSG:4326', 'EPSG:3857')),
                     })]
@@ -47,7 +46,7 @@
                         anchor: [0.5, 0.5],
                         anchorXUnits: "fraction",
                         anchorYUnits: "fraction",
-                        src:"https://www.openstreetmap.org/assets/leaflet/dist/images/marker-icon-3d253116ec4ba0e1f22a01cdf1ff7f120fa4d89a6cd0933d68f12951d19809b4.png"
+                        src: "https://www.openstreetmap.org/assets/leaflet/dist/images/marker-icon-3d253116ec4ba0e1f22a01cdf1ff7f120fa4d89a6cd0933d68f12951d19809b4.png"
                     })
                 })
             });
@@ -56,18 +55,18 @@
         }
 
         function add_map_points() {
-            elements=/*[[${category}]]*/ [];
-            for(var i in elements) {
+            elements =/*[[${category}]]*/ [];
+            for (var i in elements) {
                 console.log(elements[i].lon);
                 console.log(elements[i].lat);
-                add_map_point(elements[i].lat,elements[i].lon)
+                add_map_point(elements[i].lat, elements[i].lon)
             }
             console.log(elements[0].name)
         }
     </script>
 
 </head>
-<body onload="initialize_map(); add_map_points()" >
+<body onload="initialize_map(); add_map_points()">
 
 <nav class="clearfix">
 
@@ -95,7 +94,9 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:each="pharmacy: ${pharmacies}" th:href="@{'/show/{id}' (id=${pharmacy.getId()})}"><th:block th:text="${pharmacy.getName()}"/></a>
+                <a th:each="pharmacy: ${pharmacies}" th:href="@{'/show/{id}' (id=${pharmacy.getId()})}">
+                    <th:block th:text="${pharmacy.getName()}"/>
+                </a>
             </div>
         </div>
 
@@ -105,7 +106,9 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:each="hospital: ${hospitals}" th:href="@{'/show/{id}' (id=${hospital.getId()})}"><th:block th:text="${hospital.getName()}"/></a>
+                <a th:each="hospital: ${hospitals}" th:href="@{'/show/{id}' (id=${hospital.getId()})}">
+                    <th:block th:text="${hospital.getName()}"/>
+                </a>
             </div>
         </div>
 
@@ -115,7 +118,9 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:each="clinic: ${clinics}" th:href="@{'/show/{id}' (id=${clinic.getId()})}"><th:block th:text="${clinic.getName()}"/></a>
+                <a th:each="clinic: ${clinics}" th:href="@{'/show/{id}' (id=${clinic.getId()})}">
+                    <th:block th:text="${clinic.getName()}"/>
+                </a>
             </div>
         </div>
 
@@ -125,7 +130,9 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}"><th:block th:text="${veterinary.getName()}"/></a>
+                <a th:each="veterinary: ${veterinaries}" th:href="@{'/show/{id}' (id=${veterinary.getId()})}">
+                    <th:block th:text="${veterinary.getName()}"/>
+                </a>
             </div>
         </div>
 
@@ -147,14 +154,13 @@
             </div>
         </div>
 
-        <div class ="dropdown" id="search-container">
+        <div class="dropdown" id="search-container">
             <form action="/search" method="POST">
                 <input type="text" placeholder="Search.." name="text" style="float: left; width: 70%;">
                 <button type="submit"><i class="fa fa-search" style="float: right"></i></button>
             </form>
         </div>
     </div>
-
 
 
     <a href="javascript:void(0)" id="pull">Menu</a>
@@ -165,30 +171,34 @@
 <br>
 
 
-
 <div id='items' class="mapa">
 
-    <div  class="tabela">
-<!--    lista    -->
-        <li th:if="${text}!=null" >Search results for "<em><th:block th:text="${text}"/></em>"</li>
-        <h1 th:text="${categoryName}"></h1>
-        <li >
-            <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>
+    <div class="tabela">
+        <!--    lista    -->
+        <li th:if="${text}!=null">Search results for "<em>
+            <th:block th:text="${text}"/>
+        </em>"
         </li>
-<!--        <li th:if="${categoryName}=='Veterinarians'">-->
-<!--            <a th:each="cat: ${category}" th:href="@{'/show/veterinary/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
-<!--        </li>-->
-<!--        <li th:if="${categoryName}=='Hospitals'">-->
-<!--            <a th:each="cat: ${category}" th:href="@{'/show/hospital/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
-<!--        </li>-->
-<!--        <li th:if="${categoryName}=='Clinics'">-->
-<!--            <a th:each="cat: ${category}" th:href="@{'/show/clinic/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
-<!--        </li>-->
-<!--        <li >-->
-<!--            <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
-<!--        </li>-->
+        <h1 th:text="${categoryName}"></h1>
+        <li>
+            <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}">
+                <th:block th:text="${cat.getName()}"/>
+                <br></a>
+        </li>
+        <!--        <li th:if="${categoryName}=='Veterinarians'">-->
+        <!--            <a th:each="cat: ${category}" th:href="@{'/show/veterinary/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
+        <!--        </li>-->
+        <!--        <li th:if="${categoryName}=='Hospitals'">-->
+        <!--            <a th:each="cat: ${category}" th:href="@{'/show/hospital/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
+        <!--        </li>-->
+        <!--        <li th:if="${categoryName}=='Clinics'">-->
+        <!--            <a th:each="cat: ${category}" th:href="@{'/show/clinic/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
+        <!--        </li>-->
+        <!--        <li >-->
+        <!--            <a th:each="cat: ${category}" th:href="@{'/show/{id}' (id=${cat.getId()})}"><th:block th:text="${cat.getName()}"/><br></a>-->
+        <!--        </li>-->
     </div>
-    <div class="mapouter"  >
+    <div class="mapouter">
         <div class="gmap_canvas">
             <div id="map" style="width: 750px; height: 550px;"></div>
         </div>

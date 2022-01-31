@@ -10,18 +10,12 @@ services:
       POSTGRES_PASSWORD: Nikolapass1212.
   app0:
     build: .
-    image: "dians-server/search-server-docker"
+    image: "dians-server/search-server-docker.jar"
     ports:
       - "8761:8761"
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres?currentSchema=dizajn_proekt
-#      SPRING_DATASOURCE_USERNAME: postgres
-#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
-#    depends_on:
-#      - db
   app1:
     build: .
-    image: "dians-clinic/clinic-docker"
+    image: "dians-clinic/clinic-docker.jar"
     ports:
       - "9001:9001"
     environment:
@@ -34,7 +28,7 @@ services:
       - app6
   app2:
     build: .
-    image: "dians-veterinary/veterinary-docker"
+    image: "dians-veterinary/veterinary-docker.jar"
     ports:
       - "9002:9002"
     environment:
@@ -47,7 +41,7 @@ services:
       - app6
   app3:
     build: .
-    image: "dians-pharmacy/pharmacy-docker"
+    image: "dians-pharmacy/pharmacy-docker.jar"
     ports:
       - "9003:9003"
     environment:
@@ -58,10 +52,9 @@ services:
       - db
       - app0
       - app6
-
   app4:
     build: .
-    image: "dians-hospital/hospital-docker"
+    image: "dians-hospital/hospital-docker.jar"
     ports:
       - "9004:9004"
     environment:
@@ -72,30 +65,18 @@ services:
       - db
       - app0
       - app6
-
   app5:
     build: .
-    image: "dians-web-app/web-app-docker"
+    image: "dians-web-app/web-app-docker.jar"
     ports:
       - "9005:9005"
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres?currentSchema=dizajn_proekt
-#      SPRING_DATASOURCE_USERNAME: postgres
-#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
     depends_on:
-      - db
       - app0
       - app6
-
   app6:
     build: .
-    image: "dians-api/api-docker"
+    image: "dians-api/api-docker.jar"
     ports:
       - "9191:9191"
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres?currentSchema=dizajn_proekt
-#      SPRING_DATASOURCE_USERNAME: postgres
-#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
     depends_on:
-      #- db
       - app0

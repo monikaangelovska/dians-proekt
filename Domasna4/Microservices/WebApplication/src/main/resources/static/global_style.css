@@ -4,7 +4,7 @@ body {
     background-color: #ece8e5;
 }
 
-/* Clearfix */
+/* Clearfix -----------------------------------------------------------------------*/
 .clearfix:before,
 .clearfix:after {
     content: " ";
@@ -12,12 +12,10 @@ body {
     clear: both;
 }
 .clearfix {
-    /*zoom: 1;*/
     width: 100%;
 }
 
-/*Dropdown menu style*/
-
+/*Dropdown menu style --------------------------------------------------------------------*/
 .content {
     background: #eef;
     padding: 5px;
@@ -54,7 +52,6 @@ body {
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
-
 }
 
 .dropdown-content a {
@@ -106,7 +103,7 @@ body {
     background: #ccc;
 }
 
-/* Basic Styles */
+/* Basic Styles -------------------------------------------------------------------------*/
 #logo {
     height: 40px;
     padding: 0;
@@ -139,7 +136,7 @@ nav a#pull {
     display: none;
 }
 
-/*CSS za mapata*/
+/*CSS za mapata-------------------------------------------------------------------------*/
 
 .tabela {
     float: left;
@@ -217,15 +214,11 @@ td {
     width: 180px;
 }
 
-/*CSS za main page*/
+/*CSS za main page ----------------------------------------------------------------------------*/
 #doktor {
-    /*display: flex;*/
     flex-wrap: wrap;
     position: relative;
 }
-
-
-
 
 #plava {
     display: flex;
@@ -239,7 +232,6 @@ td {
     font-style: italic;
     color: cornflowerblue;
 }
-
 
 
 hr {
@@ -283,8 +275,7 @@ hr {
     width: 500px;
 }
 
-
-
+/*фонтови---------------------------------------------------------------------------*/
 @font-face {
     font-family: OpenSans;
     src: url("fonts/OpenSans-Bold.ttf");
