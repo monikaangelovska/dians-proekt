@@ -29,16 +29,6 @@ public class ClinicController {
 
     @GetMapping("/show/{id}")
     public List<Clinic> findDepartmentById(@PathVariable("id") Long clinicId) {
-//        log.info("Inside findDepartmentById method of DepartmentController");
-//        WrapperClinic wrapperClinic;
-//        if(clinic_service.findByIdClinic(clinicId).isPresent())
-//        {
-//                return    wrapperClinic =new WrapperClinic(clinic_service.findByIdClinic(clinicId).get());
-//
-//        }
-//        wrapperClinic= new WrapperClinic(null);
-//        return wrapperClinic;
-//        return clinic_service.findByIdClinic(clinicId).get();
         List<Clinic> hospitals=new ArrayList<>();
         if(clinic_service.findByIdClinic(clinicId).isPresent())
         {
